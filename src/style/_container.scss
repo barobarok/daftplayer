@@ -1,0 +1,17 @@
+.app__container {
+  width: 402.5px;
+  height: 710px;
+  background: #1b1b1b;
+  color: #fff;
+  overflow: hidden;
+}
+@media (max-width: 403px) {
+  .app__container {
+    width: 100%;
+  }
+}
+@media (max-height: 710px) {
+  .app__container {
+    height: 100%;
+  }
+}
