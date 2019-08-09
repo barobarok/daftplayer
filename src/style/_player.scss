@@ -25,13 +25,11 @@
   height: $menuSvgSize * 6.5;
   width: $menuSvgSize * 6.5;
   position: absolute;
-  transition: $secondTransitionTime;
 }
 .player-main-btn--active {
   height: $menuSvgSize * 10;
   width: $menuSvgSize * 10;
   position: absolute;
-  transition: $secondTransitionTime;
 }
 .player-main-btn__container {
   display: flex;
@@ -43,6 +41,38 @@
   height: $menuSvgSize * 4.5;
   width: $menuSvgSize * 4.5;
   z-index: 100;
+}
+
+.player-timeline__container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #9a9b9b;
+  font-size: 12px;
+  .player-timeline__timeline {
+    width: 60%;
+    margin: 0 25px;
+    height: 1px;
+    background: #000;
+    position: relative;
+  }
+  .player-timeline__timeline::after {
+    content: "•";
+    color: #000;
+    position: absolute;
+    top: -12px;
+    right: -5px;
+    font-size: 18px;
+  }
+  .player-timeline__live-timeline {
+    margin-bottom: 1px;
+    height: 3px;
+    background: #3f3f3f;
+    position: absolute;
+    top: -1px;
+  }
 }
 
 @media (max-width: 340px) {

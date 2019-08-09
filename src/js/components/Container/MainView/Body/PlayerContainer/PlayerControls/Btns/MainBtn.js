@@ -4,7 +4,6 @@ const MainBtn = ({}) => {
   const [clicked, click] = useState(false);
 
   const handleClick = ev => {
-    console.log(ev);
     click(!clicked);
   };
   return (
