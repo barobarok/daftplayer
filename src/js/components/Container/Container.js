@@ -1,6 +1,6 @@
 import React from "react";
-import Menu from "../Menu/Menu";
-import MainView from "../MainView/MainView";
+import Menu from "./Menu/Menu";
+import MainView from "./MainView/MainView";
 
 const Container = () => {
   return (

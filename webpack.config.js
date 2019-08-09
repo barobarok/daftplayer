@@ -23,6 +23,19 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"]
+      },
+      {
+        test: /\.(ttf|eot|woff|woff2)$/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "fonts/[name].[ext]"
+          }
+        }
+      },
+      {
+        test: /\.svg$/,
+        loader: "svg-inline-loader"
       }
     ]
   },

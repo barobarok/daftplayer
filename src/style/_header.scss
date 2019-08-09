@@ -1,0 +1,38 @@
+.header__container {
+  width: 100%;
+  position: relative;
+}
+.header-btn__container {
+  svg {
+    height: $menuSvgSize;
+    width: $menuSvgSize;
+  }
+}
+.back-btn__container {
+  position: absolute;
+  top: $appW / 7;
+  left: $appW / 10;
+}
+
+.menu-btn__container {
+  position: absolute;
+  top: $appW / 7;
+  right: $appW / 10;
+}
+
+.header-label__container {
+  height: $appW / 3;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .header-label__title {
+    color: $secondFontColour;
+    font-size: 12px;
+    margin-bottom: $menuSvgSize / 2;
+  }
+  .header-label__text {
+    font-size: 18px;
+  }
+}
