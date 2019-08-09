@@ -7,7 +7,7 @@ class App extends Component {
     super();
     this.state = {
       loadedCode: 0,
-      activeSongIndex: null,
+      activeSongIndex: -1,
       playlistName: "",
       playlist: [],
       alertMsg: ""
@@ -98,16 +98,17 @@ class App extends Component {
   };
 
   render() {
+    const { loadedCode, playlist, activeSongIndex } = this.state;
     return (
       <AppContext.Provider
         value={{
-          playlist: this.state.playlist,
-          activeSongIndex: this.state.activeSongIndex,
+          playlist: playlist,
+          activeSongIndex: activeSongIndex,
           setActiveSongIndex: this.setActiveSongIndex
         }}
       >
         <div className="widnow__container">
-          <Container />
+          {loadedCode == 200 ? <Container /> : null}
         </div>
       </AppContext.Provider>
     );

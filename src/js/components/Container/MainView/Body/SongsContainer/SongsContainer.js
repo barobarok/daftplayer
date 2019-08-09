@@ -1,15 +1,32 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
+
+import AppContext from "../../../../../AppContext";
+import SongsSlider from "./SongsSlider/SongsSlider";
+import CurrentSongData from "./CurrentSongData/CurrentSongData";
 
 const SongsContainer = ({}) => {
-  return <div className="songs-container__container">T</div>;
+  const context = useContext(AppContext);
+  const { playlist, activeSongIndex, setActiveSongIndex } = context;
+
+  return (
+    <div className="songs-container__container">
+      {playlist.length ? (
+        <React.Fragment>
+          <SongsSlider
+            playlist={playlist}
+            activeSongIndex={activeSongIndex}
+            setActiveSongIndex={setActiveSongIndex}
+          />
+          <CurrentSongData
+            title={playlist[activeSongIndex].title}
+            band={playlist[activeSongIndex].band}
+          />
+        </React.Fragment>
+      ) : (
+        <div>STOP</div>
+      )}
+    </div>
+  );
 };
 
-SongsContainer.propTypes = {
-  backFunc: PropTypes.func.isRequired
-};
-
-SongsContainer.defaultProps = {
-  backFunc: () => console.log("add backFunc")
-};
 export default SongsContainer;
