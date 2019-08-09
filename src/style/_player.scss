@@ -1,0 +1,64 @@
+.player-controls__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160px;
+}
+
+.player__icon {
+  margin: 15px;
+  svg {
+    height: $menuSvgSize;
+    width: $menuSvgSize;
+    fill: $secondUtilsColour;
+    transition: $secondTransitionTime;
+  }
+}
+
+.player__icon--active {
+  svg {
+    fill: $mainUtilsColour;
+  }
+}
+
+.player-main-btn {
+  height: $menuSvgSize * 6.5;
+  width: $menuSvgSize * 6.5;
+  position: absolute;
+  transition: $secondTransitionTime;
+}
+.player-main-btn--active {
+  height: $menuSvgSize * 10;
+  width: $menuSvgSize * 10;
+  position: absolute;
+  transition: $secondTransitionTime;
+}
+.player-main-btn__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+}
+.player-main-btn__clickarea {
+  height: $menuSvgSize * 4.5;
+  width: $menuSvgSize * 4.5;
+  z-index: 100;
+}
+
+@media (max-width: 340px) {
+  .player-main-btn {
+    height: $menuSvgSize * 2.5;
+    width: $menuSvgSize * 2.5;
+  }
+  .player-main-btn--active {
+    height: $menuSvgSize * 4.5;
+    width: $menuSvgSize * 4.5;
+  }
+  .player-main-btn__container {
+    width: 29%;
+  }
+  .player-main-btn__clickarea {
+    height: $menuSvgSize * 1.5;
+    width: $menuSvgSize * 1.5;
+  }
+}
