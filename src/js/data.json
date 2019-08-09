@@ -1,0 +1,41 @@
+{
+  "name": "Super lista",
+  "playlist": [
+    {
+      "id": 1,
+      "album": "Unreleased",
+      "title": "Self Conscious",
+      "band": "Kanye west",
+      "time": 261,
+      "cover_name": "kw_unreleased.jpg",
+      "background": "kw_unreleased_bg.jpg"
+    },
+    {
+      "id": 2,
+      "album": "Savannah",
+      "title": "Savannah",
+      "band": "FAULHABER",
+      "time": 183,
+      "cover_name": "f_savannah.jpg",
+      "background": "f_savannah_bg.jpg"
+    },
+    {
+      "id": 3,
+      "album": "Bass Down",
+      "title": "If You Fall",
+      "band": "Ray Dalton",
+      "time": 187,
+      "cover_name": "rd_bass_down.jpg",
+      "background": "rd_bass_down_bg.jpg"
+    },
+    {
+      "id": 4,
+      "album": "FAMA",
+      "title": "Casablanca",
+      "band": "BLACHA",
+      "time": 145,
+      "cover_name": "b_fama.jpg",
+      "background": "b_fama_bg.jpg"
+    }
+  ]
+}
