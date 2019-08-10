@@ -8,7 +8,7 @@ class App extends Component {
     this.state = {
       loadedCode: 0,
       currentSongId: -1,
-      nextSongId: {},
+      nextSongId: -1,
       shuffleHistory: [],
       playlistName: "",
       playlist: [],
@@ -179,30 +179,40 @@ class App extends Component {
   };
 
   setNextSongActive = () => {
-    const { playlist, currentSongId, options, shuffleHistory } = this.state;
-    playlist[currentSongId].played = true;
-    const nextSongId = this.setNextSongData(
+    const {
       playlist,
       currentSongId,
       options,
-      true
+      shuffleHistory,
+      nextSongId
+    } = this.state;
+    playlist[currentSongId].played = true;
+
+    const newNextSong = this.setNextSongData(
+      playlist,
+      nextSongId,
+      options,
+      false
     );
     const newHistoryItem = {
       id: currentSongId,
       date: Date.now()
     };
 
-    shuffleHistory.push(newHistoryItem);
-    if (nextSongId < 0) {
+    if (nextSongId <= 1 && newNextSong == -1) {
       this.resetAllSongs();
 
       this.setState({
-        shuffleHistory,
-        currentSongId: 1
+        nextSongId: 2,
+        currentSongId: 1,
+        shuffleHistory: []
       });
     } else {
+      shuffleHistory.push(newHistoryItem);
+
       this.setState({
         shuffleHistory,
+        nextSongId: newNextSong < 1 ? 1 : newNextSong,
         currentSongId: nextSongId
       });
     }
