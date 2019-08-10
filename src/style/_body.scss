@@ -15,6 +15,7 @@
   left: 0;
   background-size: contain;
   width: 100%;
+  max-height: 300px;
   height: 50%;
   background-repeat: no-repeat;
   filter: grayscale(1);
@@ -42,8 +43,8 @@
 
 .playlist-item__container-active {
   img {
-    height: $menuSvgSize * 8;
-    width: $menuSvgSize * 8;
+    height: $menuSvgSize * 10;
+    width: $menuSvgSize * 10;
   }
 }
 

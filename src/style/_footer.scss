@@ -1,6 +1,50 @@
 .graphicTrack__container {
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   width: 100%;
   align-items: baseline;
+}
+
+.bottomMenu__icon {
+  margin-left: 5%;
+  svg {
+    height: $menuSvgSize * 1.5;
+    width: $menuSvgSize * 1.5;
+    fill: $mainUtilsColour;
+  }
+}
+.bottomMenu__container {
+  background: #fff;
+  height: 70px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  .bottomMenu__info {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 5%;
+    width: 199%;
+    height: 100%;
+    padding-bottom: 50px;
+  }
+  .bottomMenu__info--next {
+    .bottomMenu__info--next-label {
+      color: #9a9b9b;
+      font-size: 12px;
+    }
+    .bottomMenu__info--next-title {
+      color: #000;
+    }
+  }
+  .bottomMenu__info--empty {
+    letter-spacing: 8px;
+
+    color: #cacaca;
+  }
+  .bottomMenu__info--time {
+    color: #9a9b9b;
+    font-size: 20px;
+  }
 }
