@@ -113,11 +113,15 @@ class App extends Component {
     });
   };
 
-  getUserConfig = () => {
-    return {
-      shuffle: true,
-      reapeatCurrent: false
-    };
+  getUserConfig = async () => {
+    const options = JSON.parse(await localStorage.getItem("options"));
+
+    if (!options) {
+      const defaultOptions = { shuffle: false, reapeatCurrent: false };
+      localStorage.setItem("options", JSON.stringify(defaultOptions));
+      return defaultOptions;
+    }
+    return options;
   };
 
   setNextSongData = () => {
@@ -146,15 +150,33 @@ class App extends Component {
     return filteredPlayList[randomIndex];
   };
 
+  setOption = (name, value) => {
+    const { options } = this.state;
+    options[name] = value ? true : false;
+    localStorage.setItem("options", JSON.stringify(options));
+    this.setState({
+      options
+    });
+  };
+
   render() {
-    const { loadedCode, playlist, currentSongId, nextSong } = this.state;
+    const {
+      loadedCode,
+      playlist,
+      currentSongId,
+      nextSong,
+      options
+    } = this.state;
+    console.log(this.state);
     return (
       <AppContext.Provider
         value={{
           playlist: playlist,
           currentSongId: currentSongId,
           setActiveSongId: this.setActiveSongId,
-          nextSong: nextSong
+          nextSong: nextSong,
+          options: options,
+          setOption: this.setOption
         }}
       >
         <div className="widnow__container">
