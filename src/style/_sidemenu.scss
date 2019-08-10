@@ -1,0 +1,14 @@
+.side-menu__container {
+  width: $appW;
+  height: $appH;
+  position: absolute;
+  top: 0;
+  left: $appW;
+  background: rgba(0, 0, 0, 0.5);
+  transition: 1s;
+  z-index: 100;
+}
+
+.side-menu__container-show {
+  left: 0;
+}

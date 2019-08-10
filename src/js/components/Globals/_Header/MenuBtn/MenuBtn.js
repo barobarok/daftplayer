@@ -2,28 +2,31 @@ import React from "react";
 import SVG from "react-inlinesvg";
 import Icon from "./more_ico.svg";
 import PropTypes from "prop-types";
-const MenuBtn = ({ menuFunc, color }) => {
+const MenuBtn = ({ func, isActive }) => {
   return (
     <div
-      className="header-btn__container menu-btn__container"
-      onClick={menuFunc}
+      className={
+        isActive
+          ? "header-btn__container menu-btn__container menu-btn__container-active  "
+          : "header-btn__container menu-btn__container "
+      }
+      onClick={func}
     >
       <SVG
         src={Icon}
-        preProcessor={code => code.replace(/fill=".*?"/g, `fill="${color}"`)}
+        preProcessor={code => code.replace(/fill=".*?"/g, `fill="0fd65a"`)}
       />
     </div>
   );
 };
 
 MenuBtn.propTypes = {
-  menuFunc: PropTypes.func.isRequired,
-  color: PropTypes.string.isRequired
+  func: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired
 };
 
 MenuBtn.defaultProps = {
-  menuFunc: () => console.log("add menuFunc"),
-  color: "0fd65a"
+  func: () => console.log("add menuFunc")
 };
 
 export default MenuBtn;

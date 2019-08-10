@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Menu from "./Menu/Menu";
 import MainView from "./MainView/MainView";
 import SongBackground from "./MainView/SongBackground/SongBackground";
+
 import AppContext from "../../AppContext";
 const Container = () => {
   const context = useContext(AppContext);

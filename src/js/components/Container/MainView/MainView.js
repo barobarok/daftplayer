@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import MainViewHeader from "./MainViewHeader/MainViewHeader";
 import Body from "./Body/Body";
 import AppContext from "../../../AppContext";
+import SideMenu from "./SideMenu/SideMenu";
 
 import Footer from "./Footer/Footer";
 const MainView = ({}) => {
@@ -12,10 +13,9 @@ const MainView = ({}) => {
     <div className="main-view__container ">
       <MainViewHeader albumName={playlist[currentSongId].album} />
 
-      <React.Fragment>
-        <Body />
-        <Footer />
-      </React.Fragment>
+      <Body />
+      <Footer />
+      <SideMenu />
     </div>
   );
 };

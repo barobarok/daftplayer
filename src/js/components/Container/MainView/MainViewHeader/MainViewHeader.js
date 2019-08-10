@@ -12,10 +12,12 @@ const MainViewHeader = ({ albumName }) => {
     play,
     playlist,
     currentSongId,
-    controlPlaySong
+    controlPlaySong,
+    sideMenuShow,
+    setSideMenuShow
   } = context;
   const currentSong = playlist[currentSongId];
-  console.log(bottomMenuShow);
+
   return (
     <Header>
       <span
@@ -37,7 +39,10 @@ const MainViewHeader = ({ albumName }) => {
         }
       >
         <HeaderLabel title={"ALBUM"} text={albumName} />
-        <MenuBtn />
+        <MenuBtn
+          func={() => setSideMenuShow(!sideMenuShow)}
+          isActive={sideMenuShow}
+        />
       </span>
     </Header>
   );

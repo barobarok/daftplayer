@@ -3,6 +3,7 @@
   position: relative;
 }
 .header-btn__container {
+  z-index: 101;
   svg {
     height: $menuSvgSize;
     width: $menuSvgSize;
@@ -16,10 +17,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 101;
 }
 
 .menu-btn__container {
   @include rightPartOfHeader;
+  svg {
+    fill: $mainUtilsColour;
+    transition: 0.5s;
+  }
+}
+.menu-btn__container-active {
+  svg {
+    fill: #fff;
+  }
 }
 
 .header-label__container {
@@ -70,7 +81,10 @@
 .main-header__span {
   transition: 1s;
   opacity: 0;
-
+  .player-main-btn__clickarea {
+    height: 0;
+    width: 0;
+  }
   .header-song-label__container {
     opacity: 0;
     transition: 1s;
@@ -93,6 +107,10 @@
 }
 
 .main-header__span-show {
+  .player-main-btn__clickarea {
+    height: $menuSvgSize * 1.5;
+    width: $menuSvgSize * 1.5;
+  }
   .header-label__container {
     opacity: 1;
   }

@@ -7,6 +7,7 @@ class App extends Component {
     super();
     this.state = {
       bottomMenuShow: false,
+      sideMenuShow: false,
       play: false,
       currenttime: 0,
       loadedCode: 0,
@@ -310,6 +311,13 @@ class App extends Component {
       seconds.toString().length > 1 ? seconds : `0${seconds}`
     }`;
   };
+
+  setSideMenuShow = bool => {
+    this.setState({
+      sideMenuShow: bool
+    });
+  };
+
   render() {
     const {
       loadedCode,
@@ -319,7 +327,8 @@ class App extends Component {
       options,
       bottomMenuShow,
       currenttime,
-      play
+      play,
+      sideMenuShow
     } = this.state;
 
     return (
@@ -340,7 +349,9 @@ class App extends Component {
           timeParser: this.timeParser,
           currenttime: currenttime,
           play: play,
-          controlPlaySong: this.controlPlaySong
+          controlPlaySong: this.controlPlaySong,
+          sideMenuShow,
+          setSideMenuShow: this.setSideMenuShow
         }}
       >
         <div className="widnow__container">

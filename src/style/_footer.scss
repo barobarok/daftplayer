@@ -24,6 +24,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  z-index: 101;
   .bottomMenu__info {
     display: flex;
     align-items: flex-end;
