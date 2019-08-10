@@ -1,8 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-const PlaylistItem = ({ elem, time, func }) => {
+const PlaylistItem = ({ elem, time, func, isActive }) => {
   return (
-    <div className="playlist-menu__item" onClick={func}>
+    <div
+      className={
+        isActive
+          ? "playlist-menu__item playlist-menu__item--active"
+          : "playlist-menu__item"
+      }
+      onClick={func}
+    >
       <div className="playlist-menu__item-right">
         <div className="playlist-menu__item-id">{elem.id}</div>
         <div className="playlist-menu__item-title">{elem.title}</div>
@@ -24,6 +31,7 @@ PlaylistItem.propTypes = {
     background: PropTypes.string
   }).isRequired,
   func: PropTypes.func.isRequired,
-  time: PropTypes.string.isRequired
+  time: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired
 };
 export default PlaylistItem;

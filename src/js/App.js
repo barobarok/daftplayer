@@ -249,7 +249,8 @@ class App extends Component {
       });
       this.setActiveSongId(1);
     } else {
-      shuffleHistory.push(newHistoryItem);
+      if (options.shuffle && !options.reapeatCurrent)
+        shuffleHistory.push(newHistoryItem);
 
       this.setState({
         shuffleHistory,

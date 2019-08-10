@@ -87,7 +87,7 @@
   background-repeat: no-repeat;
   transition: 0.5s;
   z-index: 0;
-  background-image: linear-gradient(to top, white, rgba(255, 255, 255, 0.7));
+  background-image: linear-gradient(to top, white, rgba(255, 255, 255, 0.3));
 }
 
 .playlist-menu__item {
@@ -130,4 +130,11 @@
 }
 .playlist-menu__item:last-child {
   margin-bottom: 100px;
+}
+.playlist-menu__item--active {
+  .playlist-menu__item-title,
+  .playlist-menu__item-time,
+  .playlist-menu__item-dots {
+    color: $mainUtilsColour;
+  }
 }

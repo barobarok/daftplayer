@@ -19,23 +19,11 @@
 }
 
 .menu-btn__container {
-  position: absolute;
-  top: $appW / 10;
-  right: 0;
-  width: ($appW / 9) * 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include rightPartOfHeader;
 }
 
 .header-label__container {
-  height: $appW / 4;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+  @include headerLabelContainer;
   .header-label__title {
     color: $secondFontColour;
     font-size: 12px;
@@ -43,5 +31,69 @@
   }
   .header-label__text {
     font-size: 18px;
+  }
+}
+.header-song-label__container {
+  @include headerLabelContainer;
+  align-items: flex-start;
+  margin-left: ($appW / 9) * 2;
+  .header-song-label__title {
+    color: $mainUtilsColour;
+    font-size: 18px;
+  }
+  .header-song-label__band {
+    font-size: 13px;
+    color: $secondFontColour;
+  }
+}
+
+.header-play-btn__container {
+  @include rightPartOfHeader;
+  top: $menuSvgSize * 1.5;
+  .player-main-btn__container {
+    height: 50px;
+  }
+  .player-main-btn__clickarea {
+    height: $menuSvgSize * 2;
+    width: $menuSvgSize * 2;
+  }
+  .player-main-btn {
+    height: $menuSvgSize * 2.5;
+    width: $menuSvgSize * 2.5;
+  }
+  .player-main-btn--active {
+    height: $menuSvgSize * 4;
+    width: $menuSvgSize * 4;
+  }
+}
+
+.main-header__span {
+  transition: 1s;
+  opacity: 0;
+
+  .header-song-label__container {
+    opacity: 0;
+    transition: 1s;
+    height: 0;
+  }
+  .header-label__container {
+    height: 0;
+    opacity: 0;
+    transition: 1s;
+  }
+}
+.main-header__span-show {
+  opacity: 1;
+  display: flex;
+}
+.main-header__span-show {
+  .header-song-label__container {
+    opacity: 1;
+  }
+}
+
+.main-header__span-show {
+  .header-label__container {
+    opacity: 1;
   }
 }
