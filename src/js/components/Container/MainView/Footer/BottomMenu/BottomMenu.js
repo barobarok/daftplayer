@@ -4,7 +4,7 @@ import Icon from "./playlist_ico.svg";
 import AppContext from "../../../../../AppContext";
 const BottomMenu = ({}) => {
   const context = useContext(AppContext);
-  const { nextSongId, playlist, setBottomMenuShow } = context;
+  const { nextSongId, playlist, setBottomMenuShow, timeParser } = context;
 
   return (
     <div className="bottomMenu__container">
@@ -21,7 +21,7 @@ const BottomMenu = ({}) => {
         </div>
         <div className="bottomMenu__info--empty">........</div>
         <div className="bottomMenu__info--time">
-          {playlist[nextSongId].time}
+          {timeParser(playlist[nextSongId].time)}
         </div>
       </div>
     </div>

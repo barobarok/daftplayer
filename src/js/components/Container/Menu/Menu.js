@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import AppContext from "../../../AppContext";
 import Footer from "./Footer/Footer";
+import Playlist from "./Playlist/Playlist";
 
 const Menu = ({}) => {
   const context = useContext(AppContext);
@@ -13,6 +14,7 @@ const Menu = ({}) => {
           : "menu__container"
       }
     >
+      <Playlist />
       <Footer shufflePlay={shufflePlay} setBottomMenuShow={setBottomMenuShow} />
     </div>
   );

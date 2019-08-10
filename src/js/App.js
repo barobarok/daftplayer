@@ -7,6 +7,8 @@ class App extends Component {
     super();
     this.state = {
       bottomMenuShow: false,
+      play: false,
+      currenttime: 0,
       loadedCode: 0,
       currentSongId: -1,
       nextSongId: -1,
@@ -19,6 +21,7 @@ class App extends Component {
       },
       alertMsg: ""
     };
+    this._playTimeout = null;
   }
 
   componentDidMount = () => {
@@ -128,10 +131,39 @@ class App extends Component {
     );
   };
 
-  setActiveSongId = index => {
-    this.setState({
-      currentSongId: index
+  setActiveSongId = async index => {
+    clearTimeout(this._playTimeout);
+    await this.setState({
+      currentSongId: index,
+      currenttime: 0,
+      play: true
     });
+    this.startSong();
+  };
+
+  controlPlaySong = async bool => {
+    await this.setState({
+      play: bool
+    });
+    if (bool) this.startSong();
+    else clearTimeout(this._playTimeout);
+  };
+
+  startSong = () => {
+    const { play, currenttime, playlist, currentSongId } = this.state;
+    console.log("startSong", currenttime);
+    if (play) {
+      this._playTimeout = setTimeout(async () => {
+        if (currenttime == playlist[currentSongId].time) {
+          this.setNextSongActive();
+          return;
+        } else {
+          this.setState({ currenttime: currenttime + 1 });
+          this.startSong();
+          return;
+        }
+      }, 1000);
+    }
   };
 
   getUserConfig = async () => {
@@ -186,7 +218,7 @@ class App extends Component {
     });
   };
 
-  setNextSongActive = () => {
+  setNextSongActive = async () => {
     const {
       playlist,
       currentSongId,
@@ -195,7 +227,7 @@ class App extends Component {
       nextSongId
     } = this.state;
     playlist[currentSongId].played = true;
-
+    await this.setState({ play: false });
     const newNextSong = this.setNextSongData(
       playlist,
       nextSongId,
@@ -212,17 +244,18 @@ class App extends Component {
 
       this.setState({
         nextSongId: 2,
-        currentSongId: 1,
+
         shuffleHistory: []
       });
+      this.setActiveSongId(1);
     } else {
       shuffleHistory.push(newHistoryItem);
 
       this.setState({
         shuffleHistory,
-        nextSongId: newNextSong < 1 ? 1 : newNextSong,
-        currentSongId: nextSongId
+        nextSongId: newNextSong < 1 ? 1 : newNextSong
       });
+      this.setActiveSongId(nextSongId);
     }
   };
 
@@ -263,6 +296,19 @@ class App extends Component {
     });
   };
 
+  playSongFromMenu = id => {
+    this.setActiveSongId(id);
+    this.setBottomMenuShow(false);
+  };
+
+  timeParser = time => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+
+    return `${minutes}:${
+      seconds.toString().length > 1 ? seconds : `0${seconds}`
+    }`;
+  };
   render() {
     const {
       loadedCode,
@@ -270,9 +316,11 @@ class App extends Component {
       currentSongId,
       nextSongId,
       options,
-      bottomMenuShow
+      bottomMenuShow,
+      currenttime,
+      play
     } = this.state;
-    console.log(this.state);
+
     return (
       <AppContext.Provider
         value={{
@@ -286,7 +334,12 @@ class App extends Component {
           setPrevSong: this.setPrevSong,
           bottomMenuShow: bottomMenuShow,
           setBottomMenuShow: this.setBottomMenuShow,
-          shufflePlay: this.shufflePlay
+          shufflePlay: this.shufflePlay,
+          playSongFromMenu: this.playSongFromMenu,
+          timeParser: this.timeParser,
+          currenttime: currenttime,
+          play: play,
+          controlPlaySong: this.controlPlaySong
         }}
       >
         <div className="widnow__container">

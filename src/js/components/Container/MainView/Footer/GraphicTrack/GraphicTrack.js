@@ -3,7 +3,7 @@ import AppContext from "../../../../../AppContext";
 
 const GraphicTrack = ({}) => {
   const context = useContext(AppContext);
-  const { playlist, currentSongId } = context;
+  const { playlist, currentSongId, currenttime } = context;
   const trackLength = playlist[currentSongId].time;
   const getRandomInt = (min, max, totalMin, totalMax) => {
     if (max > totalMax) {
@@ -51,8 +51,8 @@ const GraphicTrack = ({}) => {
       {countsList.map((elem, i) => {
         const styles = {
           height: `${elem}px`,
-          width: `${trackLength / 100}%`,
-          background: i <= 53 ? "#0fd65a" : "#9a9b9b",
+          width: `${100 / trackLength}%`,
+          background: i < currenttime ? "#0fd65a" : "#9a9b9b",
           borderTopLeftRadius: "50%",
           borderTopRightRadius: "50%"
         };

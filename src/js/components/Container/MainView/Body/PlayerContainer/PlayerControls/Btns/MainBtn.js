@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
-const MainBtn = ({}) => {
-  const [clicked, click] = useState(false);
-
-  const handleClick = ev => {
-    click(!clicked);
-  };
+const MainBtn = ({ isActive, func }) => {
   return (
     <div className="player-main-btn__container">
-      <div className="player-main-btn__clickarea" onClick={handleClick} />
-      {clicked ? (
+      <div className="player-main-btn__clickarea" onClick={func} />
+      {isActive ? (
         <img
           className="player-main-btn--active"
           src={`${require(`./Play_active.png`)}`}
@@ -23,5 +19,8 @@ const MainBtn = ({}) => {
     </div>
   );
 };
-
+MainBtn.propTypes = {
+  isActive: PropTypes.bool,
+  func: PropTypes.func.isRequired
+};
 export default MainBtn;

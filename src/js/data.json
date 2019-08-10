@@ -6,7 +6,7 @@
       "album": "Unreleased",
       "title": "Self Conscious",
       "band": "Kanye west",
-      "time": 261,
+      "time": 20,
       "cover_img": "kw_unreleased.png",
       "background": "kw_unreleased_bg.jpg"
     },
@@ -30,6 +30,78 @@
     },
     "4": {
       "id": 4,
+      "album": "FAMA",
+      "title": "Casablanca",
+      "band": "BLACHA",
+      "time": 145,
+      "cover_img": "b_fama.png",
+      "background": "b_fama_bg.jpg"
+    },
+    "5": {
+      "id": 5,
+      "album": "Unreleased",
+      "title": "Self Conscious",
+      "band": "Kanye west",
+      "time": 261,
+      "cover_img": "kw_unreleased.png",
+      "background": "kw_unreleased_bg.jpg"
+    },
+    "6": {
+      "id": 6,
+      "album": "Savannah",
+      "title": "Savannah",
+      "band": "FAULHABER",
+      "time": 183,
+      "cover_img": "f_savannah.png",
+      "background": "f_savannah_bg.jpg"
+    },
+    "7": {
+      "id": 7,
+      "album": "Bass Down",
+      "title": "If You Fall",
+      "band": "Ray Dalton",
+      "time": 187,
+      "cover_img": "rd_bass_down.png",
+      "background": "rd_bass_down_bg.jpg"
+    },
+    "8": {
+      "id": 8,
+      "album": "FAMA",
+      "title": "Casablanca",
+      "band": "BLACHA",
+      "time": 145,
+      "cover_img": "b_fama.png",
+      "background": "b_fama_bg.jpg"
+    },
+    "9": {
+      "id": 9,
+      "album": "Unreleased",
+      "title": "Self Conscious",
+      "band": "Kanye west",
+      "time": 261,
+      "cover_img": "kw_unreleased.png",
+      "background": "kw_unreleased_bg.jpg"
+    },
+    "10": {
+      "id": 10,
+      "album": "Savannah",
+      "title": "Savannah",
+      "band": "FAULHABER",
+      "time": 183,
+      "cover_img": "f_savannah.png",
+      "background": "f_savannah_bg.jpg"
+    },
+    "11": {
+      "id": 11,
+      "album": "Bass Down",
+      "title": "If You Fall",
+      "band": "Ray Dalton",
+      "time": 187,
+      "cover_img": "rd_bass_down.png",
+      "background": "rd_bass_down_bg.jpg"
+    },
+    "12": {
+      "id": 12,
       "album": "FAMA",
       "title": "Casablanca",
       "band": "BLACHA",

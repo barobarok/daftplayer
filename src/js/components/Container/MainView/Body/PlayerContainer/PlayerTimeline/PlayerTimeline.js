@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-const PlayerTimeline = ({ currentTime, fullTime }) => {
+const PlayerTimeline = ({ currentTime, fullTime, timelineProgres }) => {
   return (
     <div className={"player-timeline__container"}>
       <div>{currentTime}</div>
       <div className={"player-timeline__timeline"}>
         <div
-          style={{ width: `${(currentTime * 100) / fullTime}%` }}
+          style={{ width: `${timelineProgres}%` }}
           className="player-timeline__live-timeline"
         />
       </div>
@@ -15,7 +15,8 @@ const PlayerTimeline = ({ currentTime, fullTime }) => {
   );
 };
 PlayerTimeline.propsType = {
-  currentTime: PropTypes.number.isRequired,
-  fullTime: PropTypes.number.isRequired
+  currentTime: PropTypes.string.isRequired,
+  fullTime: PropTypes.number.isRequired,
+  timelineProgres: PropTypes.number.isRequired
 };
 export default PlayerTimeline;

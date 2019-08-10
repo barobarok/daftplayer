@@ -10,3 +10,16 @@ $appH: 717px;
 $appW: 403px;
 
 $menuSvgSize: 20px;
+
+@mixin text-i1 {
+  font-size: 16px;
+  color: #000;
+}
+@mixin text-i2 {
+  font-size: 16px;
+  color: $secondFontColour;
+}
+@mixin text-i3 {
+  font-size: 12px;
+  color: $secondFontColour;
+}

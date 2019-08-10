@@ -16,7 +16,7 @@ const SongsSlider = ({ playlist, currentSongId, setActiveSongId }) => {
           <PlaylistItem
             key={playlist[key].id}
             item={playlist[key]}
-            setActiveSongId={() => setActiveSongId(key)}
+            setActiveSongId={() => setActiveSongId(parseInt(key))}
             isActive={key == currentSongId}
           />
         );
