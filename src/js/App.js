@@ -8,7 +8,8 @@ class App extends Component {
     this.state = {
       loadedCode: 0,
       currentSongId: -1,
-      nextSong: {},
+      nextSongId: {},
+      shuffleHistory: [],
       playlistName: "",
       playlist: [],
       options: {
@@ -21,8 +22,16 @@ class App extends Component {
 
   componentDidMount = () => {
     this.setUserConfig();
+    window.addEventListener("resize", this.updateDimensions);
   };
 
+  componentWillUnmount = () => {
+    window.removeEventListener("resize", this.updateDimensions);
+  };
+
+  updateDimensions = () => {
+    console.log("skalowanie");
+  };
   setUserConfig = async () => {
     if (data.name && data.playlist["1"]) {
       try {
@@ -35,16 +44,20 @@ class App extends Component {
         Object.keys(loadedPlaylist).forEach(key =>
           Object.assign(loadedPlaylist[key], { played: false })
         );
-
+        const nextSongId = this.setNextSongData(
+          loadedPlaylist,
+          currentSongId,
+          options,
+          false
+        );
         await this.setState({
           playlist: loadedPlaylist,
           playlistName: data.name,
           currentSongId,
           options,
+          nextSongId,
           loadedCode: 200
         });
-
-        this.setNextSongData();
       } catch (err) {
         this.setState({
           loadedCode: 404
@@ -69,7 +82,7 @@ class App extends Component {
         const playlists = JSON.parse(await localStorage.getItem("playlists"));
         if (!playlists) {
           this.createLocalStoragePlaylist(playlistName);
-          return resolve("1");
+          return resolve(1);
         }
         const playListIndex = this.findPlayListIndex(playlists, playlistName);
         resolve(playListIndex);
@@ -82,7 +95,7 @@ class App extends Component {
   createLocalStoragePlaylist = playlistName => {
     localStorage.setItem(
       "playlists",
-      JSON.stringify([{ name: playlistName, currentSongId: "1" }])
+      JSON.stringify([{ name: playlistName, currentSongId: 1 }])
     );
   };
 
@@ -91,7 +104,7 @@ class App extends Component {
 
     if (index == -1) {
       this.addNewPlaylsitToLocalStorage(playlists, playlistName);
-      return "1";
+      return 1;
     }
     return playlists[index].currentSongId;
   };
@@ -103,7 +116,7 @@ class App extends Component {
   addNewPlaylsitToLocalStorage = (playlists, playlistName) => {
     localStorage.setItem(
       "playlists",
-      JSON.stringify([...playlists, { name: playlistName, currentSongId: "1" }])
+      JSON.stringify([...playlists, { name: playlistName, currentSongId: 1 }])
     );
   };
 
@@ -124,39 +137,101 @@ class App extends Component {
     return options;
   };
 
-  setNextSongData = () => {
-    const { playlist, currentSongId, options } = this.state;
-    let nextSong = playlist["1"];
-    if (options.reapeatCurrent) nextSong = playlist[currentSongId];
+  setNextSongData = (playlist, currentSongId, options, force) => {
+    let nextSongId = 1;
+    if (options.reapeatCurrent && !force) nextSongId = currentSongId;
     else if (options.shuffle)
-      nextSong = this.getRandomSong(playlist, currentSongId);
-    else if (playlist[currentSongId + 1])
-      nextSong = playlist[currentSongId + 1];
-
-    this.setState({
-      nextSong
-    });
+      nextSongId = this.getRandomSong(playlist, currentSongId);
+    else if (playlist[currentSongId + 1]) nextSongId = currentSongId + 1;
+    return nextSongId;
   };
 
   getRandomSong = (playlist, currentSongId) => {
     const filteredPlayList = Object.keys(playlist)
       .filter(key => !playlist[key].played && playlist[key].id != currentSongId)
-      .map(key => playlist[key])
-      .sort((a, b) => a.id - b.id);
+      .map(key => playlist[key]);
 
     const maxRange = filteredPlayList.length;
     const randomIndex = Math.floor(Math.random() * (maxRange - 0));
 
-    return filteredPlayList[randomIndex];
+    return filteredPlayList[randomIndex]
+      ? filteredPlayList[randomIndex].id
+      : -1;
   };
 
   setOption = (name, value) => {
-    const { options } = this.state;
+    let { options, shuffleHistory } = this.state;
     options[name] = value ? true : false;
+    if (name == "shuffle" && !value) shuffleHistory = [];
     localStorage.setItem("options", JSON.stringify(options));
     this.setState({
-      options
+      options,
+      shuffleHistory
     });
+  };
+
+  resetAllSongs = async () => {
+    const { playlist } = this.state;
+    Object.keys(playlist).forEach(key => (playlist[key].played = false));
+    await this.setState({
+      playlist
+    });
+  };
+
+  setNextSongActive = () => {
+    const { playlist, currentSongId, options, shuffleHistory } = this.state;
+    playlist[currentSongId].played = true;
+    const nextSongId = this.setNextSongData(
+      playlist,
+      currentSongId,
+      options,
+      true
+    );
+    const newHistoryItem = {
+      id: currentSongId,
+      date: Date.now()
+    };
+
+    shuffleHistory.push(newHistoryItem);
+    if (nextSongId < 0) {
+      this.resetAllSongs();
+
+      this.setState({
+        shuffleHistory,
+        currentSongId: 1
+      });
+    } else {
+      this.setState({
+        shuffleHistory,
+        currentSongId: nextSongId
+      });
+    }
+  };
+
+  setPrevSong = () => {
+    const { playlist, currentSongId, options, shuffleHistory } = this.state;
+    let prevSong = 1;
+    if (options.shuffle) {
+      const last = shuffleHistory.sort((a, b) => a.date - b.date).pop();
+      if (last) {
+        this.setState({
+          shuffleHistory,
+          currentSongId: last.id
+        });
+        return;
+      } else {
+        this.setAlertMsg({ text: "Historia pusta", clear: true });
+      }
+    }
+
+    if (playlist[currentSongId - 1]) {
+      prevSong = currentSongId - 1;
+    }
+    this.setState({
+      currentSongId: prevSong
+    });
+
+    return;
   };
 
   render() {
@@ -164,7 +239,7 @@ class App extends Component {
       loadedCode,
       playlist,
       currentSongId,
-      nextSong,
+      nextSongId,
       options
     } = this.state;
     console.log(this.state);
@@ -174,9 +249,11 @@ class App extends Component {
           playlist: playlist,
           currentSongId: currentSongId,
           setActiveSongId: this.setActiveSongId,
-          nextSong: nextSong,
+          nextSongId: nextSongId,
           options: options,
-          setOption: this.setOption
+          setOption: this.setOption,
+          setNextSongActive: this.setNextSongActive,
+          setPrevSong: this.setPrevSong
         }}
       >
         <div className="widnow__container">

@@ -37,7 +37,7 @@ SongsSlider.propTypes = {
       background: PropTypes.string
     })
   ).isRequired,
-  currentSongId: PropTypes.string.isRequired,
+  currentSongId: PropTypes.number.isRequired,
   setActiveSongId: PropTypes.func.isRequired
 };
 

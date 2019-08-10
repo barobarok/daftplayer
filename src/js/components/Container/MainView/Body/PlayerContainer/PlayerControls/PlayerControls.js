@@ -9,7 +9,7 @@ import repeat from "./icons/repeat_ico.svg";
 import AppContext from "../../../../../../AppContext";
 const PlayerControls = () => {
   const context = useContext(AppContext);
-  const { options, setOption } = context;
+  const { options, setOption, setNextSongActive, setPrevSong } = context;
   return (
     <div className="player-controls__container">
       <SmallBtnWithState
@@ -19,9 +19,9 @@ const PlayerControls = () => {
         }}
         active={options.shuffle}
       />
-      <SmallBtn icon={prev} />
+      <SmallBtn icon={prev} func={setPrevSong} />
       <MainBtn />
-      <SmallBtn icon={next} />
+      <SmallBtn icon={next} func={setNextSongActive} />
       <SmallBtnWithState
         icon={repeat}
         func={() => {

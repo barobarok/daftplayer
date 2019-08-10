@@ -2,9 +2,11 @@ import React from "react";
 const AppContext = React.createContext({
   playlist: [],
   currentSongId: "",
-  nextSong: {},
+  nextSongId: {},
   options: {},
-  setOption: () => {}
+  setOption: () => {},
+  setNextSongActive: () => {},
+  setPrevSong: () => {}
 });
 
 export default AppContext;

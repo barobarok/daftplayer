@@ -14,7 +14,11 @@
     transition: $secondTransitionTime;
   }
 }
-
+.player__icon:hover {
+  svg {
+    fill: $mainUtilsColour;
+  }
+}
 .player__icon--active {
   svg {
     fill: $mainUtilsColour;

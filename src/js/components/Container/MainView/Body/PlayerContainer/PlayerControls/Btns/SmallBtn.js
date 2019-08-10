@@ -3,7 +3,7 @@ import SVG from "react-inlinesvg";
 import PropTypes from "prop-types";
 const SmallBtn = ({ icon, func }) => {
   return (
-    <div className={`player__icon`} onClick={() => click(!clicked)}>
+    <div className={`player__icon`} onClick={func}>
       <SVG src={icon} />
     </div>
   );
