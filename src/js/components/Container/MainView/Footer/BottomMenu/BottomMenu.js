@@ -4,11 +4,11 @@ import Icon from "./playlist_ico.svg";
 import AppContext from "../../../../../AppContext";
 const BottomMenu = ({}) => {
   const context = useContext(AppContext);
-  const { nextSongId, playlist } = context;
+  const { nextSongId, playlist, setBottomMenuShow } = context;
 
   return (
     <div className="bottomMenu__container">
-      <div className="bottomMenu__icon">
+      <div className="bottomMenu__icon" onClick={() => setBottomMenuShow(true)}>
         <SVG src={Icon} />
       </div>
       <div className="bottomMenu__info">

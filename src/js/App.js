@@ -6,6 +6,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      bottomMenuShow: false,
       loadedCode: 0,
       currentSongId: -1,
       nextSongId: -1,
@@ -32,6 +33,13 @@ class App extends Component {
   updateDimensions = () => {
     console.log("skalowanie");
   };
+
+  setBottomMenuShow = value => {
+    this.setState({
+      bottomMenuShow: value
+    });
+  };
+
   setUserConfig = async () => {
     if (data.name && data.playlist["1"]) {
       try {
@@ -244,13 +252,25 @@ class App extends Component {
     return;
   };
 
+  shufflePlay = ({}) => {
+    console.log("odpalam shuflade");
+    const { options } = this.state;
+    this.setNextSongActive();
+    options.shuffle = true;
+    this.setState({
+      options,
+      bottomMenuShow: false
+    });
+  };
+
   render() {
     const {
       loadedCode,
       playlist,
       currentSongId,
       nextSongId,
-      options
+      options,
+      bottomMenuShow
     } = this.state;
     console.log(this.state);
     return (
@@ -263,7 +283,10 @@ class App extends Component {
           options: options,
           setOption: this.setOption,
           setNextSongActive: this.setNextSongActive,
-          setPrevSong: this.setPrevSong
+          setPrevSong: this.setPrevSong,
+          bottomMenuShow: bottomMenuShow,
+          setBottomMenuShow: this.setBottomMenuShow,
+          shufflePlay: this.shufflePlay
         }}
       >
         <div className="widnow__container">

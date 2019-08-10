@@ -1,0 +1,56 @@
+.menu__container {
+  width: 100%;
+  height: $appH * 0.85;
+  background: #fff;
+  position: absolute;
+  top: $appH;
+  left: 0;
+  transition: 1s;
+  z-index: 100;
+}
+.menu__container-show {
+  top: $appH * 0.15;
+}
+
+.playlist-menu__footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.playlist-menu__hide-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 5% 0;
+  svg {
+    width: $menuSvgSize;
+    height: $menuSvgSize;
+  }
+}
+
+.playlist-menu__shuffle-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  button {
+    border-radius: 30px;
+    width: 70%;
+    font-size: 12px;
+    height: 40px;
+    font-weight: 600;
+    background: $mainUtilsColour;
+    color: #fff;
+    border: none;
+    transition: 0.5s;
+  }
+
+  button:hover,
+  button:active,
+  button:focus {
+    border: none;
+    background: $mainDarkUtilsColour;
+  }
+}
