@@ -10,23 +10,32 @@
 }
 .back-btn__container {
   position: absolute;
-  top: $appW / 7;
-  left: $appW / 10;
+  top: $appW / 10;
+
+  width: ($appW / 9) * 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .menu-btn__container {
   position: absolute;
-  top: $appW / 7;
-  right: $appW / 10;
+  top: $appW / 10;
+  right: 0;
+  width: ($appW / 9) * 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header-label__container {
-  height: $appW / 3;
+  height: $appW / 4;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
   .header-label__title {
     color: $secondFontColour;
     font-size: 12px;

@@ -6,20 +6,20 @@ import CurrentSongData from "./CurrentSongData/CurrentSongData";
 
 const SongsContainer = ({}) => {
   const context = useContext(AppContext);
-  const { playlist, activeSongIndex, setActiveSongIndex } = context;
+  const { playlist, currentSongId, setActiveSongId } = context;
 
   return (
     <div className="songs-container__container">
-      {playlist.length ? (
+      {playlist[currentSongId] ? (
         <React.Fragment>
           <SongsSlider
             playlist={playlist}
-            activeSongIndex={activeSongIndex}
-            setActiveSongIndex={setActiveSongIndex}
+            currentSongId={currentSongId}
+            setActiveSongId={setActiveSongId}
           />
           <CurrentSongData
-            title={playlist[activeSongIndex].title}
-            band={playlist[activeSongIndex].band}
+            title={playlist[currentSongId].title}
+            band={playlist[currentSongId].band}
           />
         </React.Fragment>
       ) : (

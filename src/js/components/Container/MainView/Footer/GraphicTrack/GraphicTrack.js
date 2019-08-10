@@ -3,8 +3,8 @@ import AppContext from "../../../../../AppContext";
 
 const GraphicTrack = ({}) => {
   const context = useContext(AppContext);
-
-  const trackLength = context.playlist[context.activeSongIndex].time;
+  const { playlist, currentSongId } = context;
+  const trackLength = playlist[currentSongId].time;
   const getRandomInt = (min, max, totalMin, totalMax) => {
     if (max > totalMax) {
       max = totalMax;
@@ -23,7 +23,7 @@ const GraphicTrack = ({}) => {
 
   useEffect(() => {
     setNewTrack(trackLength);
-  }, [context.activeSongIndex]);
+  }, [currentSongId]);
 
   const generateNewRandomCountsList = len => {
     const list = [];

@@ -1,7 +1,7 @@
 {
   "name": "Super lista",
-  "playlist": [
-    {
+  "playlist": {
+    "1": {
       "id": 1,
       "album": "Unreleased",
       "title": "Self Conscious",
@@ -10,7 +10,7 @@
       "cover_img": "kw_unreleased.png",
       "background": "kw_unreleased_bg.jpg"
     },
-    {
+    "2": {
       "id": 2,
       "album": "Savannah",
       "title": "Savannah",
@@ -19,7 +19,7 @@
       "cover_img": "f_savannah.png",
       "background": "f_savannah_bg.jpg"
     },
-    {
+    "3": {
       "id": 3,
       "album": "Bass Down",
       "title": "If You Fall",
@@ -28,7 +28,7 @@
       "cover_img": "rd_bass_down.png",
       "background": "rd_bass_down_bg.jpg"
     },
-    {
+    "4": {
       "id": 4,
       "album": "FAMA",
       "title": "Casablanca",
@@ -37,5 +37,5 @@
       "cover_img": "b_fama.png",
       "background": "b_fama_bg.jpg"
     }
-  ]
+  }
 }

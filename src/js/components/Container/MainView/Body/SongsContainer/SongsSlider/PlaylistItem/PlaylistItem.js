@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-const PlaylistItem = ({ item, setActiveSongIndex, isActive }) => {
+const PlaylistItem = ({ item, setActiveSongId, isActive }) => {
   return (
     <React.Fragment>
       <div
@@ -9,7 +9,7 @@ const PlaylistItem = ({ item, setActiveSongIndex, isActive }) => {
             ? `playlist-item__container playlist-item__container-active`
             : `playlist-item__container`
         }
-        onClick={setActiveSongIndex}
+        onClick={setActiveSongId}
       >
         <img
           src={require(`../../../../../../../../imgs/covers/${item.cover_img}`)}
@@ -29,6 +29,6 @@ PlaylistItem.propTypes = {
     background: PropTypes.string.isRequired
   }),
   isActive: PropTypes.bool.isRequired,
-  setActiveSongIndex: PropTypes.func.isRequired
+  setActiveSongId: PropTypes.func.isRequired
 };
 export default PlaylistItem;

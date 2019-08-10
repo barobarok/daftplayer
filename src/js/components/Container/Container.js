@@ -4,7 +4,7 @@ import MainView from "./MainView/MainView";
 
 const Container = () => {
   return (
-    <div className="app__container">
+    <div className="app__container" id="app__container">
       <Menu />
       <MainView />
     </div>

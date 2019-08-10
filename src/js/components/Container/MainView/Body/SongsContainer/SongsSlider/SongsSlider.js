@@ -2,20 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlaylistItem from "./PlaylistItem/PlaylistItem";
 
-const SongsSlider = ({ playlist, activeSongIndex, setActiveSongIndex }) => {
+const SongsSlider = ({ playlist, currentSongId, setActiveSongId }) => {
+  const id = playlist[currentSongId].id;
+
   const styles = {
-    transform: `translateX(${(-activeSongIndex + 1) * 81.25 +
-      -60 * activeSongIndex}px)`
+    transform: `translateX(${80 - 80 * 1.5 * (id - 1)}px)`
   };
+
   return (
     <div className="songs-slider__container" style={styles}>
-      {playlist.map((elem, index) => {
+      {Object.keys(playlist).map(key => {
         return (
           <PlaylistItem
-            key={elem.id}
-            item={elem}
-            setActiveSongIndex={() => setActiveSongIndex(index)}
-            isActive={index === activeSongIndex}
+            key={playlist[key].id}
+            item={playlist[key]}
+            setActiveSongId={() => setActiveSongId(key)}
+            isActive={key == currentSongId}
           />
         );
       })}
@@ -24,7 +26,7 @@ const SongsSlider = ({ playlist, activeSongIndex, setActiveSongIndex }) => {
 };
 
 SongsSlider.propTypes = {
-  playlist: PropTypes.arrayOf(
+  playlist: PropTypes.objectOf(
     PropTypes.shape({
       id: PropTypes.number,
       album: PropTypes.string,
@@ -35,8 +37,8 @@ SongsSlider.propTypes = {
       background: PropTypes.string
     })
   ).isRequired,
-  activeSongIndex: PropTypes.number.isRequired,
-  setActiveSongIndex: PropTypes.func.isRequired
+  currentSongId: PropTypes.string.isRequired,
+  setActiveSongId: PropTypes.func.isRequired
 };
 
 export default SongsSlider;

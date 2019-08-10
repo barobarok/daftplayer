@@ -1,7 +1,8 @@
 import React from "react";
 const AppContext = React.createContext({
   playlist: [],
-  activeSongIndex: null
+  currentSongId: "",
+  nextSong: {}
 });
 
 export default AppContext;

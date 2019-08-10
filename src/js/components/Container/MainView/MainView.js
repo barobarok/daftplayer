@@ -6,14 +6,14 @@ import SongBackground from "./SongBackground/SongBackground";
 import Footer from "./Footer/Footer";
 const MainView = ({}) => {
   const context = useContext(AppContext);
-  const { playlist, activeSongIndex } = context;
+  const { playlist, currentSongId } = context;
 
   return (
     <div className="main-view__container">
-      <SongBackground backgroundUrl={playlist[activeSongIndex].background} />
-      <MainViewHeader albumName={playlist[activeSongIndex].album} />
+      <SongBackground backgroundUrl={playlist[currentSongId].background} />
+      <MainViewHeader albumName={playlist[currentSongId].album} />
       <Body />
-      <Footer playlist={playlist} activeSongIndex={activeSongIndex} />
+      <Footer />
     </div>
   );
 };
