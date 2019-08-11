@@ -3,7 +3,6 @@ import { shallow, mount } from "enzyme";
 import App from "./App";
 import Container from "./components/Container/Container";
 import data from "./data.json";
-
 describe("App Component", () => {
   let mainWrapper = {};
   it("renders without crashing", () => {
@@ -16,6 +15,7 @@ describe("App Component", () => {
 
   it("contain Container", () => {
     expect(mainWrapper.state().loadedCode).toBe(200);
+
     expect(mainWrapper.find(Container)).toHaveLength(1);
   });
 
@@ -47,5 +47,46 @@ describe("App Component", () => {
     expect(stringInput).toBe("00:00");
     expect(wrapper.state().loadedCode).toBe(500);
     expect(wrapper.state().alertMsg).toBe("Uszkodzona playlista");
+  });
+
+  it("check method - shufflePlay", () => {
+    mainWrapper.instance().shufflePlay();
+    const state = mainWrapper.state();
+    const { shuffle } = state.options;
+
+    expect(shuffle).toBeTruthy();
+    expect(state.bottomMenuShow).toBeFalsy();
+  });
+
+  it("check method - setBottomMenuShow", () => {
+    mainWrapper.instance().setBottomMenuShow(true);
+    expect(mainWrapper.state().bottomMenuShow).toBeTruthy();
+    mainWrapper.instance().setBottomMenuShow(false);
+    expect(mainWrapper.state().bottomMenuShow).toBeFalsy();
+  });
+
+  it("check method - setAlertMsg not clear", () => {
+    mainWrapper.instance().setAlertMsg({ text: "test", clear: false });
+    expect(mainWrapper.state().alertMsg).toBe("test");
+    setTimeout(() => {
+      expect(mainWrapper.state().alertMsg).toBe("test");
+    }, 2000);
+  });
+
+  it("check method - setAlertMsg clear", () => {
+    mainWrapper.instance().setAlertMsg({ text: "test2", clear: true });
+    expect(mainWrapper.state().alertMsg).toBe("test2");
+    setTimeout(() => {
+      expect(mainWrapper.state().alertMsg).toBe("");
+    }, 2000);
+  });
+
+  it("check method - playSongFromMenu", () => {
+    mainWrapper.instance().playSongFromMenu(1);
+    expect(mainWrapper.state().currentSongId).toBe(1);
+    expect(mainWrapper.state().currenttime).toBe(0);
+    expect(mainWrapper.state().play).toBe(true);
+    expect(mainWrapper.state().bottomMenuShow).toBeFalsy();
+    expect(mainWrapper.state().sideMenuShow).toBeFalsy();
   });
 });

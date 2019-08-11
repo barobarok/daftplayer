@@ -30,12 +30,6 @@ class App extends Component {
     this.setUserConfig(data);
   };
 
-  setBottomMenuShow = value => {
-    this.setState({
-      bottomMenuShow: value
-    });
-  };
-
   setUserConfig = async data => {
     if (data.name && data.playlist[1]) {
       try {
@@ -69,15 +63,6 @@ class App extends Component {
         this.setAlertMsg({ text: err, clear: false });
       }
     }
-  };
-
-  setAlertMsg = async ({ text, clear }) => {
-    console.log("ALERT! ", text);
-    await this.setState({
-      alertMsg: text
-    });
-    if (clear)
-      setTimeout(() => this.setAlertMsg({ text: "", clear: false }), 1500);
   };
 
   checkPlaylistsInLocalStorage = playlistName => {
@@ -307,10 +292,24 @@ class App extends Component {
     return;
   };
 
+  setAlertMsg = async ({ text, clear }) => {
+    console.log("ALERT! ", text);
+    await this.setState({
+      alertMsg: text
+    });
+    if (clear)
+      setTimeout(() => this.setAlertMsg({ text: "", clear: false }), 1500);
+  };
+
+  setBottomMenuShow = value => {
+    this.setState({
+      bottomMenuShow: value
+    });
+  };
+
   shufflePlay = () => {
     try {
       const { options } = this.state;
-
       this.setNextSongActive();
       options.shuffle = true;
       this.setState({
