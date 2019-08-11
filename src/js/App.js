@@ -109,9 +109,14 @@ class App extends Component {
     );
   };
 
+  setNextSongId = () => {};
+
   setActiveSongId = async index => {
+    const { playlist, options } = this.state;
+    const nextSongId = this.setNextSongData(playlist, index, options);
     clearTimeout(this._playTimeout);
     await this.setState({
+      nextSongId: nextSongId,
       currentSongId: index,
       currenttime: 0,
       play: true
@@ -208,6 +213,12 @@ class App extends Component {
     if (name == "shuffle" && value) {
       nextSongId = this.shuffleOnControler(playlist, currentSongId);
     }
+    if (name == "reapeatCurrent" && value) {
+      nextSongId = currentSongId;
+    }
+    if (name == "reapeatCurrent" && !value) {
+      nextSongId = this.shuffleOffControler(playlist, currentSongId);
+    }
     localStorage.setItem("options", JSON.stringify(options));
     this.setState({
       options,
@@ -267,14 +278,31 @@ class App extends Component {
   };
 
   setPrevSong = () => {
-    const { playlist, currentSongId, options, shuffleHistory } = this.state;
+    const {
+      playlist,
+      currentSongId,
+      options,
+      shuffleHistory,
+      currenttime
+    } = this.state;
     let prevSong = 1;
+    if (options.reapeatCurrent) {
+      this.setActiveSongId(currentSongId);
+      return;
+    }
+
+    if (currenttime > 3) {
+      this.setActiveSongId(currentSongId);
+      return;
+    }
+
     if (options.shuffle) {
       const last = shuffleHistory.sort((a, b) => a.date - b.date).pop();
       if (last) {
         this.setState({
           shuffleHistory,
-          currentSongId: last.id
+          currentSongId: last.id,
+          currenttime: 0
         });
         return;
       } else {
@@ -285,9 +313,7 @@ class App extends Component {
     if (playlist[currentSongId - 1]) {
       prevSong = currentSongId - 1;
     }
-    this.setState({
-      currentSongId: prevSong
-    });
+    this.setActiveSongId(prevSong);
 
     return;
   };

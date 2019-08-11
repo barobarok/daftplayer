@@ -12,9 +12,11 @@ const PlayerControls = () => {
   const {
     options,
     setOption,
+    setActiveSongId,
     setNextSongActive,
     setPrevSong,
     controlPlaySong,
+    currentSongId,
     play
   } = context;
 
