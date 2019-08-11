@@ -2,7 +2,8 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import App from "./App";
 import Container from "./components/Container/Container";
-import data from "./data.json";
+import AppAlert from "./components/Globals/AppAlert/AppAlert";
+
 describe("App Component", () => {
   let mainWrapper = {};
   it("renders without crashing", () => {
@@ -68,16 +69,20 @@ describe("App Component", () => {
   it("check method - setAlertMsg not clear", () => {
     mainWrapper.instance().setAlertMsg({ text: "test", clear: false });
     expect(mainWrapper.state().alertMsg).toBe("test");
+    expect(mainWrapper.find(AppAlert)).toHaveLength(1);
     setTimeout(() => {
       expect(mainWrapper.state().alertMsg).toBe("test");
+      expect(mainWrapper.find(AppAlert)).toHaveLength(1);
     }, 2000);
   });
 
   it("check method - setAlertMsg clear", () => {
     mainWrapper.instance().setAlertMsg({ text: "test2", clear: true });
     expect(mainWrapper.state().alertMsg).toBe("test2");
+    expect(mainWrapper.find(AppAlert)).toHaveLength(1);
     setTimeout(() => {
       expect(mainWrapper.state().alertMsg).toBe("");
+      expect(mainWrapper.find(AppAlert)).toHaveLength(0);
     }, 2000);
   });
 

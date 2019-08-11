@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AppContext from "./AppContext";
 import Container from "./components/Container/Container";
+import AppAlert from "./components/Globals/AppAlert/AppAlert";
 import data from "./data.json";
 
 class App extends Component {
@@ -31,7 +32,7 @@ class App extends Component {
   };
 
   setUserConfig = async data => {
-    if (data.name && data.playlist[1]) {
+    if (data && data.name && data.playlist[1]) {
       try {
         const currentSongId = await this.checkPlaylistsInLocalStorage(
           data.name
@@ -62,6 +63,8 @@ class App extends Component {
         });
         this.setAlertMsg({ text: err, clear: false });
       }
+    } else {
+      this.setAlertMsg({ text: "Proszę załadować playlistę", clear: false });
     }
   };
 
@@ -395,7 +398,8 @@ class App extends Component {
       bottomMenuShow,
       currenttime,
       play,
-      sideMenuShow
+      sideMenuShow,
+      alertMsg
     } = this.state;
 
     return (
@@ -421,6 +425,7 @@ class App extends Component {
           setSideMenuShow: this.setSideMenuShow
         }}
       >
+        {alertMsg && <AppAlert text={alertMsg} setAlert={this.setAlertMsg} />}
         <div className="widnow__container">
           {loadedCode == 200 ? <Container /> : null}
         </div>
