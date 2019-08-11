@@ -19,7 +19,7 @@ const BottomMenu = ({}) => {
           </p>
           {/* ograniczenie ilosci znakow */}
         </div>
-        <div className="bottomMenu__info--empty">........</div>
+
         <div className="bottomMenu__info--time">
           {timeParser(playlist[nextSongId].time)}
         </div>

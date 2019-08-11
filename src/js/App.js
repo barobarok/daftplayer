@@ -201,7 +201,7 @@ class App extends Component {
   };
 
   shuffleOffControler = (playlist, currentSongId) => {
-    const newNextSongId = 1;
+    let newNextSongId = 1;
 
     if (playlist[currentSongId + 1]) {
       newNextSongId = currentSongId + 1;

@@ -41,6 +41,11 @@
     }
     .bottomMenu__info--next-title {
       color: #000;
+      position: relative;
+    }
+    .bottomMenu__info--next-title::after {
+      @include dotsAfterText;
+      right: -95px;
     }
   }
   .bottomMenu__info--empty {

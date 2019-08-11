@@ -43,7 +43,17 @@ $menuSvgSize: 20px;
   align-items: center;
   margin-bottom: 20px;
 }
-
+@mixin dotsAfterText {
+  content: ".............";
+  position: absolute;
+  bottom: 0;
+  right: -73px;
+  width: 100%;
+  letter-spacing: 10px;
+  z-index: -5;
+  font-size: 11px;
+  color: $secondFontColour;
+}
 @mixin rightPartOfHeader {
   position: absolute;
   top: $appW / 10;

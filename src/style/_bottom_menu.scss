@@ -107,10 +107,16 @@
   .playlist-menu__item-id {
     @include text-i3;
     margin-right: $menuSvgSize * 1.5;
+    width: 23px;
   }
   .playlist-menu__item-title {
     @include text-i1;
     margin-right: $menuSvgSize * 1.5;
+    position: relative;
+    background: white;
+  }
+  .playlist-menu__item-title::after {
+    @include dotsAfterText;
   }
   .playlist-menu__item-time {
     @include text-i2;

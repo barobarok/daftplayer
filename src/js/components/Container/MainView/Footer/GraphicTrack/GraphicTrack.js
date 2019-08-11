@@ -53,9 +53,9 @@ const GraphicTrack = ({}) => {
           height: `${elem}px`,
           width: `${100 / trackLength}%`,
           maxWidth: "1%",
-          background: i < currenttime ? "#0fd65a" : "#9a9b9b",
-          borderTopLeftRadius: "50%",
-          borderTopRightRadius: "50%"
+          background: i < currenttime ? "#0fd65a" : "",
+          borderTopLeftRadius: "90%",
+          borderTopRightRadius: "90%"
         };
         return <div style={styles} key={i} />;
       })}
