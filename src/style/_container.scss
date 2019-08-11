@@ -6,7 +6,7 @@
   overflow: hidden;
   position: relative;
 }
-
+$rollupCoversWidth: $appW - 25;
 @media (max-width: $appW) {
   .app__container {
     width: 100%;
@@ -15,9 +15,25 @@
   .menu__container {
     top: 100%;
   }
+}
+@media (max-width: $rollupCoversWidth) {
   .menu__container-show {
     top: 15%;
     height: 85%;
+  }
+  .songs-slider__container {
+    transform: translateX(0) !important;
+    left: 15%;
+  }
+  .playlist-item__container img {
+    height: 0;
+    width: 0;
+    display: none;
+  }
+  .playlist-item__container-active img {
+    display: flex;
+    height: 70%;
+    width: 70%;
   }
 }
 @media (max-height: $appH) {

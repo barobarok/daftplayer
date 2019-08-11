@@ -19,7 +19,34 @@
   align-items: center;
   transition: 0.5s;
   height: $menuSvgSize * 9;
+  position: absolute;
+  top: 125px;
+  left: 1%;
 }
+.daft-logo__wrapper {
+  width: 100%;
+  position: absolute;
+  top: 190px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.daft-logo__container {
+  background: #1b1b1b;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+
+  border: 4px solid $mainUtilsColour;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    height: 20px;
+  }
+}
+
 .playlist-item__background {
   position: absolute;
   top: 0;
@@ -92,7 +119,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 220px;
   .current-song__title {
     @include titleLabel;
   }
@@ -115,29 +142,5 @@
   }
   .inside-nav__item:hover {
     color: $mainUtilsColour;
-  }
-}
-
-.daft-logo__wrapper {
-  width: 100%;
-  position: absolute;
-  top: 190px;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
-.daft-logo__container {
-  background: #1b1b1b;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-
-  border: 4px solid $mainUtilsColour;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  svg {
-    height: 20px;
   }
 }
