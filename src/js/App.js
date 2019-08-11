@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AppContext from "./AppContext";
 import Container from "./components/Container/Container";
 import data from "./data.json";
+
 class App extends Component {
   constructor() {
     super();
@@ -26,16 +27,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.setUserConfig();
-    window.addEventListener("resize", this.updateDimensions);
-  };
-
-  componentWillUnmount = () => {
-    window.removeEventListener("resize", this.updateDimensions);
-  };
-
-  updateDimensions = () => {
-    console.log("skalowanie");
+    this.setUserConfig(data);
   };
 
   setBottomMenuShow = value => {
@@ -44,8 +36,8 @@ class App extends Component {
     });
   };
 
-  setUserConfig = async () => {
-    if (data.name && data.playlist["1"]) {
+  setUserConfig = async data => {
+    if (data.name && data.playlist[1]) {
       try {
         const currentSongId = await this.checkPlaylistsInLocalStorage(
           data.name
@@ -315,14 +307,19 @@ class App extends Component {
     return;
   };
 
-  shufflePlay = ({}) => {
-    const { options } = this.state;
-    this.setNextSongActive();
-    options.shuffle = true;
-    this.setState({
-      options,
-      bottomMenuShow: false
-    });
+  shufflePlay = () => {
+    try {
+      const { options } = this.state;
+
+      this.setNextSongActive();
+      options.shuffle = true;
+      this.setState({
+        options,
+        bottomMenuShow: false
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   playSongFromMenu = id => {
@@ -332,12 +329,29 @@ class App extends Component {
   };
 
   timeParser = time => {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
+    try {
+      if (typeof time != "number") {
+        this.setState({
+          loadedCode: 500
+        });
+        this.setAlertMsg({ text: "Uszkodzona playlista", clear: false });
+        return "00:00";
+      }
 
-    return `${minutes}:${
-      seconds.toString().length > 1 ? seconds : `0${seconds}`
-    }`;
+      const minutes = Math.floor(time / 60);
+      const seconds = time % 60;
+
+      return `${minutes}:${
+        seconds.toString().length > 1 ? seconds : `0${seconds}`
+      }`;
+    } catch (err) {
+      console.log(err);
+      this.setState({
+        loadedCode: 500
+      });
+      this.setAlertMsg({ text: "Uszkodzona playlista", clear: false });
+      return "00:00";
+    }
   };
 
   setSideMenuShow = bool => {

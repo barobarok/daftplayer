@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import AppContext from "../../../../../AppContext";
+import { useAppContext } from "../../../../../AppContext";
 import SongsSlider from "./SongsSlider/SongsSlider";
 import CurrentSongData from "./CurrentSongData/CurrentSongData";
 import DaftLogo from "./DaftLogo/DaftLogo";
 
 const SongsContainer = ({}) => {
-  const context = useContext(AppContext);
+  const context = useAppContext();
   const { playlist, currentSongId, setActiveSongId, sideMenuShow } = context;
 
   return (

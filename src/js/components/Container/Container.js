@@ -1,17 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import Menu from "./Menu/Menu";
 import MainView from "./MainView/MainView";
 import SongBackground from "./MainView/SongBackground/SongBackground";
 
-import AppContext from "../../AppContext";
+import { useAppContext } from "../../AppContext";
 const Container = () => {
-  const context = useContext(AppContext);
+  const context = useAppContext();
   const { playlist, currentSongId } = context;
+
   return (
     <div className="app__container">
       <MainView />
       <Menu />
-      <SongBackground backgroundUrl={playlist[currentSongId].background} />
+      {playlist[currentSongId] && (
+        <SongBackground backgroundUrl={playlist[currentSongId].background} />
+      )}
     </div>
   );
 };

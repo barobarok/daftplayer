@@ -1,11 +1,10 @@
 import React from "react";
-import SVG from "react-inlinesvg";
-import Logo from "./daft_logo.svg";
+import DaftLogoIcon from "./DaftLogoIcon";
 const DaftLogo = ({}) => {
   return (
     <div className="daft-logo__wrapper">
       <div className="daft-logo__container">
-        <SVG src={Logo} />
+        <DaftLogoIcon />
       </div>
     </div>
   );

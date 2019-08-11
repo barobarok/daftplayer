@@ -1,6 +1,5 @@
 import React from "react";
-import SVG from "react-inlinesvg";
-import Icon from "./back_ico.svg";
+import BackBtnIcon from "./BackBtnIcon";
 import PropTypes from "prop-types";
 const BackBtn = ({ backFunc }) => {
   return (
@@ -8,7 +7,7 @@ const BackBtn = ({ backFunc }) => {
       className=" header-btn__container back-btn__container"
       onClick={backFunc}
     >
-      <SVG src={Icon} />
+      <BackBtnIcon />
     </div>
   );
 };

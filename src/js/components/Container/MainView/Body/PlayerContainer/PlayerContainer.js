@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import PlayerControls from "./PlayerControls/PlayerControls";
 import PlayerTimeline from "./PlayerTimeline/PlayerTimeline";
-import AppContext from "../../../../../AppContext";
+import { useAppContext } from "../../../../../AppContext";
 
 const PlayerContainer = ({}) => {
-  const context = useContext(AppContext);
+  const context = useAppContext();
   const { timeParser, currenttime, playlist, currentSongId } = context;
   return (
-    <div>
+    <div className="player__container">
       <PlayerControls />
       <PlayerTimeline
         timelineProgres={(currenttime * 100) / playlist[currentSongId].time}
-        currentTime={timeParser(currenttime.toString())}
+        currentTime={timeParser(currenttime)}
         fullTime={timeParser(playlist[currentSongId].time)}
       />
     </div>

@@ -1,6 +1,5 @@
 import React from "react";
-import SVG from "react-inlinesvg";
-import Icon from "./more_ico.svg";
+import MenuBtnIcon from "./MenuBtnIcon";
 import PropTypes from "prop-types";
 const MenuBtn = ({ func, isActive }) => {
   return (
@@ -12,10 +11,7 @@ const MenuBtn = ({ func, isActive }) => {
       }
       onClick={func}
     >
-      <SVG
-        src={Icon}
-        preProcessor={code => code.replace(/fill=".*?"/g, `fill="0fd65a"`)}
-      />
+      <MenuBtnIcon />
     </div>
   );
 };

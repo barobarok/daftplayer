@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import MainBtn from "./Btns/MainBtn";
 import SmallBtn from "./Btns/SmallBtn";
 import SmallBtnWithState from "./Btns/SmallBtnWithState";
-import shuffle from "./icons/shuffle_ico.svg";
-import prev from "./icons/previous_ico.svg";
-import next from "./icons/next_ico.svg";
-import repeat from "./icons/repeat_ico.svg";
-import AppContext from "../../../../../../AppContext";
+import ShuffleIcon from "./icons/ShuffleIcon";
+import RepeatIcon from "./icons/RepeatIcon";
+import NextIcon from "./icons/NextIcon";
+import PrevIcon from "./icons/PrevIcon";
+import { useAppContext } from "../../../../../../AppContext";
 const PlayerControls = () => {
-  const context = useContext(AppContext);
+  const context = useAppContext();
   const {
     options,
     setOption,
@@ -21,17 +21,17 @@ const PlayerControls = () => {
   return (
     <div className="player-controls__container">
       <SmallBtnWithState
-        icon={shuffle}
+        Icon={ShuffleIcon}
         func={() => {
           setOption("shuffle", !options.shuffle);
         }}
         active={options.shuffle}
       />
-      <SmallBtn icon={prev} func={setPrevSong} />
+      <SmallBtn Icon={PrevIcon} func={setPrevSong} />
       <MainBtn isActive={play} func={() => controlPlaySong(!play)} />
-      <SmallBtn icon={next} func={setNextSongActive} />
+      <SmallBtn Icon={NextIcon} func={setNextSongActive} />
       <SmallBtnWithState
-        icon={repeat}
+        Icon={RepeatIcon}
         func={() => {
           setOption("reapeatCurrent", !options.reapeatCurrent);
         }}

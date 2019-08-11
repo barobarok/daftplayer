@@ -1,18 +1,17 @@
 import React from "react";
-import SVG from "react-inlinesvg";
 import PropTypes from "prop-types";
-const SmallBtnWithState = ({ icon, func, active }) => {
+const SmallBtnWithState = ({ Icon, func, active }) => {
   return (
     <div
       className={active ? `player__icon player__icon--active` : `player__icon`}
       onClick={func}
     >
-      <SVG src={icon} />
+      <Icon />
     </div>
   );
 };
 SmallBtnWithState.propTypes = {
-  icon: PropTypes.node.isRequired,
+  Icon: PropTypes.func.isRequired,
   func: PropTypes.func.isRequired,
   active: PropTypes.bool.isRequired
 };

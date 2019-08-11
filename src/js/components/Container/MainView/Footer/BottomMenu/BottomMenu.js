@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import SVG from "react-inlinesvg";
-import Icon from "./playlist_ico.svg";
+import DaftLogoIcon from "./PlayListIcon";
 import AppContext from "../../../../../AppContext";
 const BottomMenu = ({}) => {
   const context = useContext(AppContext);
@@ -9,7 +8,7 @@ const BottomMenu = ({}) => {
   return (
     <div className="bottomMenu__container">
       <div className="bottomMenu__icon" onClick={() => setBottomMenuShow(true)}>
-        <SVG src={Icon} />
+        <DaftLogoIcon />
       </div>
       <div className="bottomMenu__info">
         <div className="bottomMenu__info--next">
