@@ -200,14 +200,42 @@ class App extends Component {
       : -1;
   };
 
+  shuffleOffControler = (playlist, currentSongId) => {
+    const newNextSongId = 1;
+
+    if (playlist[currentSongId + 1]) {
+      newNextSongId = currentSongId + 1;
+    }
+
+    return newNextSongId;
+  };
+
+  shuffleOnControler = (playlist, currentSongId) => {
+    const nextSongId = this.getRandomSong(playlist, currentSongId);
+    return nextSongId;
+  };
+
   setOption = (name, value) => {
-    let { options, shuffleHistory } = this.state;
+    let {
+      options,
+      shuffleHistory,
+      nextSongId,
+      currentSongId,
+      playlist
+    } = this.state;
     options[name] = value ? true : false;
-    if (name == "shuffle" && !value) shuffleHistory = [];
+    if (name == "shuffle" && !value) {
+      shuffleHistory = [];
+      nextSongId = this.shuffleOffControler(playlist, currentSongId);
+    }
+    if (name == "shuffle" && value) {
+      nextSongId = this.shuffleOnControler(playlist, currentSongId);
+    }
     localStorage.setItem("options", JSON.stringify(options));
     this.setState({
       options,
-      shuffleHistory
+      shuffleHistory,
+      nextSongId
     });
   };
 
