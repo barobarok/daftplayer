@@ -328,6 +328,7 @@ class App extends Component {
   playSongFromMenu = id => {
     this.setActiveSongId(id);
     this.setBottomMenuShow(false);
+    this.setSideMenuShow(false);
   };
 
   timeParser = time => {

@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlaylistItem from "./PlaylistItem/PlaylistItem";
 
-const SongsSlider = ({ playlist, currentSongId, setActiveSongId }) => {
+const SongsSlider = ({
+  playlist,
+  currentSongId,
+  setActiveSongId,
+  sideMenuShow
+}) => {
   const id = playlist[currentSongId].id;
 
   const styles = {
@@ -18,6 +23,7 @@ const SongsSlider = ({ playlist, currentSongId, setActiveSongId }) => {
             item={playlist[key]}
             setActiveSongId={() => setActiveSongId(parseInt(key))}
             isActive={key == currentSongId}
+            isActiveSideMenu={sideMenuShow}
           />
         );
       })}
@@ -38,7 +44,8 @@ SongsSlider.propTypes = {
     })
   ).isRequired,
   currentSongId: PropTypes.number.isRequired,
-  setActiveSongId: PropTypes.func.isRequired
+  setActiveSongId: PropTypes.func.isRequired,
+  sideMenuShow: PropTypes.bool.isRequired
 };
 
 export default SongsSlider;

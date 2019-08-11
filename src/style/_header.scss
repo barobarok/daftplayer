@@ -48,6 +48,7 @@
   @include headerLabelContainer;
   align-items: flex-start;
   margin-left: ($appW / 9) * 2;
+  z-index: 101;
   .header-song-label__title {
     color: $mainUtilsColour;
     font-size: 18px;
