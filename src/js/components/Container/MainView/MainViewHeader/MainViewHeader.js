@@ -14,12 +14,18 @@ const MainViewHeader = ({ albumName }) => {
     currentSongId,
     controlPlaySong,
     sideMenuShow,
-    setSideMenuShow
+    setSideMenuShow,
+    setBottomMenuShow
   } = context;
   const currentSong = playlist[currentSongId];
 
   return (
-    <Header>
+    <Header
+      backFunc={() => {
+        setSideMenuShow(false);
+        setBottomMenuShow(false);
+      }}
+    >
       <span
         className={
           bottomMenuShow

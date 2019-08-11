@@ -288,7 +288,6 @@ class App extends Component {
   };
 
   shufflePlay = ({}) => {
-    console.log("odpalam shuflade");
     const { options } = this.state;
     this.setNextSongActive();
     options.shuffle = true;
