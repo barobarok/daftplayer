@@ -23,7 +23,16 @@ $menuSvgSize: 20px;
   font-size: 12px;
   color: $secondFontColour;
 }
-
+@mixin titleLabel {
+  color: $mainUtilsColour;
+  font-size: 26px;
+  margin-bottom: 3px;
+}
+@mixin bandLabel {
+  color: $secondFontColour;
+  font-size: 12px;
+  text-transform: uppercase;
+}
 @mixin headerLabelContainer {
   position: absolute;
   top: $appW / 8;
@@ -43,4 +52,12 @@ $menuSvgSize: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@mixin bodyContainer {
+  margin-top: ($appW / 7) * 2;
+}
+
+@mixin coverHeight {
+  height: $menuSvgSize * 10;
 }

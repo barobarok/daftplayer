@@ -4,11 +4,48 @@
   position: absolute;
   top: 0;
   left: $appW;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(27, 27, 27, 0.96);
   transition: 1s;
   z-index: 100;
 }
 
 .side-menu__container-show {
   left: 0;
+}
+
+.side-menu-body__container {
+  @include bodyContainer;
+}
+.side-menu-body__img {
+  @include coverHeight;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 60%;
+  }
+}
+.side-menu-body__label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: -$menuSvgSize;
+  .label__label-title {
+    @include titleLabel;
+  }
+  .label_label-band {
+    @include bandLabel;
+  }
+  .label__label-footer {
+    color: $secondFontColour;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 14px;
+    text-align: center;
+    padding-left: 14px;
+    margin: 20px;
+  }
 }
